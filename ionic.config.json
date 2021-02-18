@@ -1,0 +1,7 @@
+{
+  "name": "AlkemyApp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
