@@ -1,17 +1,30 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
-  </ion-toolbar>
+<ion-header class="ion-text-uppercase">
+    <ion-toolbar>
+        <ion-title class="ion-text-center">Balance</ion-title>
+    </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-text class="ion-text-center" color="primary">
+    <h1 class="font-balance">$1.000.000</h1>
+</ion-text>
+<ion-content>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+    <ion-list>
+        <ion-item class="my" *ngFor="let item of [1,1,1,1,1,1,1,1,1,1];let i = index">
+            <ion-label>
+                <ion-text>
+                    <h1>{{i+1}} Bicicleta
+                        <small> <ion-text color="danger">
+                            <h2>Expend 18-02-2021</h2>
+                </ion-text>
+                </small>
+                    </h1>
+                </ion-text>
+            </ion-label>
+            <ion-label slot="end" class="ion-text-right">
+                <h1>$ 50000000</h1>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
 </ion-content>
