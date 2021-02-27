@@ -5,26 +5,51 @@
 </ion-header>
 
 <ion-text class="ion-text-center" color="primary">
-    <h1 class="font-balance">$1.000.000</h1>
+    <h1 class="font-balance">${{balanceTotal}}</h1>
 </ion-text>
-<ion-content>
+
+<ion-content class="ion-padding">
+    <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Pull to refresh" refreshingSpinner="circles" refreshingText="Refreshing..."></ion-refresher-content>
+    </ion-refresher>
 
     <ion-list>
-        <ion-item class="my" *ngFor="let item of [1,1,1,1,1,1,1,1,1,1];let i = index">
+        <ion-item *ngFor="let item of form | slice:0:10 ;let i = index" (onChange)="balanceResult($event)">
             <ion-label>
-                <ion-text>
-                    <h1>{{i+1}} Bicicleta
-                        <small> <ion-text color="danger">
-                            <h2>Expend 18-02-2021</h2>
-                </ion-text>
-                </small>
+                <ion-text class="capitalize">
+                    <h1>{{i+1}} {{item.form_concepto}}
+                        <ion-text *ngIf="item.form_tipo=='egreso'" color="danger">
+                            <ion-item>
+                                <ion-icon slot="start" name="chevron-up-circle-outline" color="danger"></ion-icon>
+                                <ion-text color="danger">
+                                    <small><h2>{{item.form_fecha.split("T")[0]| date:"shortDate"}}</h2></small>
+                                    <ion-label class="capitalize">{{item.form_fecha.split("T")[0] | date:'EEEE'}}</ion-label>
+                                </ion-text>
+                                <ion-label slot="end" class="ion-text-right">
+                                    <ion-text *ngIf="item.form_tipo=='egreso'" color="danger">
+                                        <h1 class="mifont">$ {{item.form_monto}}</h1>
+                                    </ion-text>
+                                </ion-label>
+
+                            </ion-item>
+                        </ion-text>
+                        <ion-text *ngIf="item.form_tipo=='ingreso'" color="success">
+                            <ion-item>
+                                <ion-icon slot="start" name="chevron-down-circle-outline" color="success"></ion-icon>
+                                <ion-text color="success">
+                                    <small><h2>{{item.form_fecha.split("T")[0] | date:"shortDate"}}</h2></small>
+                                    <ion-label class="capitalize">{{item.form_fecha.split("T")[0] | date:'EEEE'}}</ion-label>
+                                </ion-text>
+                                <ion-label slot="end" class="ion-text-right">
+                                    <ion-text *ngIf="item.form_tipo=='ingreso'" color="success">
+                                        <h1 class="mifont">$ {{item.form_monto}}</h1>
+                                    </ion-text>
+                                </ion-label>
+                            </ion-item>
+                        </ion-text>
                     </h1>
                 </ion-text>
             </ion-label>
-            <ion-label slot="end" class="ion-text-right">
-                <h1>$ 50000000</h1>
-            </ion-label>
         </ion-item>
     </ion-list>
-
 </ion-content>

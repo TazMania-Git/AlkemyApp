@@ -1,10 +1,35 @@
-<ion-header [translucent]="true">
+<ion-header class="ion-text-uppercase">
     <ion-toolbar>
         <ion-title>
-            Create New Income/Expense
+            Crear nuevo formulario
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content class="ion-padding">
+
+    <form #formulario="ngForm">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">Concepto</ion-label>
+                <ion-input maxlength=30 type="text" name="concepto" [(ngModel)]="formus.form_concepto" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Monto</ion-label>
+                <ion-input type="tel" maxlength="9" pattern="[0-9]+$" name="monto" [(ngModel)]="formus.form_monto" required></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label position="floating">Fecha</ion-label>
+                <ion-datetime displayFormat="DD MMMM YYYY" name="fecha" [(ngModel)]="formus.form_fecha" required></ion-datetime>
+            </ion-item>
+            <ion-item>
+                <ion-label>Tipo</ion-label>
+                <ion-select placeholder="Select One" name="tipo" [(ngModel)]="formus.form_tipo" required>
+                    <ion-select-option *ngFor="let state of statelist" [value]="state.state_id">{{state.state_name}}</ion-select-option>
+                </ion-select>
+            </ion-item>
+            <ion-button [disabled]="formulario.invalid" type="submit" expand="block" (click)="guardar()">Guardar</ion-button>
+        </ion-list>
+    </form>
+
 </ion-content>

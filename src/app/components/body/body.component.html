@@ -1,0 +1,39 @@
+<ion-list>
+    <ion-item *ngFor="let item of forms;let i = index">
+        <ion-label>
+            <ion-text class="capitalize">
+                <h1>{{item.form_concepto}}
+                    <ion-text *ngIf="item.form_tipo=='egreso'" color="danger">
+                        <ion-item>
+                            <ion-icon slot="start" name="chevron-up-circle-outline" color="danger"></ion-icon>
+                            <ion-text color="danger">
+                                <small><h2>{{item.form_fecha.split("T")[0]| date:"shortDate"}}</h2></small>
+                                <ion-label class="capitalize">{{item.form_fecha.split("T")[0] | date:'EEEE'}}</ion-label>
+                            </ion-text>
+                            <ion-label slot="end" class="ion-text-right">
+                                <ion-text *ngIf="item.form_tipo=='egreso'" color="danger">
+                                    <h1 class="mifont">$ {{item.form_monto}}</h1>
+                                </ion-text>
+                            </ion-label>
+
+                        </ion-item>
+                    </ion-text>
+                    <ion-text *ngIf="item.form_tipo=='ingreso'" color="success">
+                        <ion-item>
+                            <ion-icon slot="start" name="chevron-down-circle-outline" color="success"></ion-icon>
+                            <ion-text color="success">
+                                <small><h2>{{item.form_fecha.split("T")[0] | date:"shortDate"}}</h2></small>
+                                <ion-label class="capitalize">{{item.form_fecha.split("T")[0] | date:'EEEE'}}</ion-label>
+                            </ion-text>
+                            <ion-label slot="end" class="ion-text-right">
+                                <ion-text *ngIf="item.form_tipo=='ingreso'" color="success">
+                                    <h1 class="mifont">$ {{item.form_monto}}</h1>
+                                </ion-text>
+                            </ion-label>
+                        </ion-item>
+                    </ion-text>
+                </h1>
+            </ion-text>
+        </ion-label>
+    </ion-item>
+</ion-list>

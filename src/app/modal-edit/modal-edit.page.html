@@ -1,0 +1,27 @@
+<ion-header class="ion-text-uppercase">
+    <ion-toolbar>
+        <ion-title>Editar</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ion-item>
+            <ion-label position="stacked">Concepto</ion-label>
+            <ion-input maxlength=30 type="text" [(ngModel)]="form.form_concepto"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Monto</ion-label>
+            <ion-input maxlength=9 type="tel" [(ngModel)]="form.form_monto"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label position="stacked">Fecha</ion-label>
+            <ion-datetime displayFormat="DD MMMM YYYY" [(ngModel)]="form.form_fecha"></ion-datetime>
+        </ion-item>
+        <ion-button expand="block" (click)="editar(form.form_id,form)">Editar</ion-button>
+
+    </ion-list>
+
+
+</ion-content>
